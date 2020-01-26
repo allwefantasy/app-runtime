@@ -6,14 +6,14 @@
 
     <groupId>tech.mlsql</groupId>
     <artifactId>app-runtime_2.11</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.2</version>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <scala.version>2.11.8</scala.version>
         <scala.binary.version>2.11</scala.binary.version>
         <scala.jline.version>2.11.0-M3</scala.jline.version>
         <serviceframework.version>2.0.2</serviceframework.version>
-        <web-platform-version>0.1.0</web-platform-version>
+        <web-platform-version>0.1.2</web-platform-version>
         <spark.version>2.4.3</spark.version>
     </properties>
     <dependencies>
