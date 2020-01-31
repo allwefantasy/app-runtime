@@ -31,7 +31,7 @@ object AppRuntime {
       val paths = params.getParam("pluginPaths").split(",")
       val names = params.getParam("pluginNames").split(",")
       names.zip(paths).map { case (name, path) =>
-        PluginLoader.load(path, name)
+        PluginLoader.load(Array(path), name)
       }
     }
 

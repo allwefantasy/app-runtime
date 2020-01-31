@@ -9,7 +9,7 @@ class RegisterPluginAction extends CustomAction with Logging {
   override def run(params: Map[String, String]): String = {
     val url = params("url")
     val className = params("className")
-    val loader = PluginLoader.load(url, className)
+    val loader = PluginLoader.load(Array(url), className)
     val plugin = loader.plugin
     plugin.entries.foreach { pi =>
       if (pi.pluginType == PluginType.app) {
