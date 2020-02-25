@@ -7,4 +7,5 @@ dev/docker/*.jar
 *.iml
 release
 .sfcli/
+release.sh
 

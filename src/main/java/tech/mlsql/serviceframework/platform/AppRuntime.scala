@@ -1,5 +1,7 @@
 package tech.mlsql.serviceframework.platform
 
+import java.io.File
+
 import net.csdn.ServiceFramwork
 import net.csdn.bootstrap.Application
 import tech.mlsql.common.utils.shell.command.ParamsUtil
@@ -11,11 +13,22 @@ import scala.collection.JavaConverters._
 object AppRuntime {
   def main(args: Array[String]): Unit = {
     val params = new ParamsUtil(args)
-    loadPlugin(params)
+
     val applicationYamlName = params.getParam("config", "application.yml")
+    val packageNames = params.getParam("parentLoaderWhiteList", "packageNames.txt")
+    val packageFile = new File(packageNames)
+    if (packageFile.exists()) {
+      scala.io.Source.fromFile(packageFile).getLines().foreach { item =>
+        println("=>" + item)
+        PackageNames.names.add(item)
+      }
+    }
+
     ServiceFramwork.applicaionYamlName(applicationYamlName)
     ServiceFramwork.scanService.setLoader(classOf[AppRuntime])
     ServiceFramwork.enableNoThreadJoin()
+
+    loadPlugin(params)
 
     AppRuntimeStore.store.getApps().foreach { appItem =>
       AppManager.call(appItem.name, params.getParamsMap.asScala.toMap)
